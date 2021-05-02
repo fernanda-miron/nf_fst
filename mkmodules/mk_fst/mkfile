@@ -1,0 +1,20 @@
+MKSHELL="/bin/bash"
+
+#target: OPCIONES: prereq
+# La opcion Q = QUIET no imprime todo
+
+%.log.weir.fst: %.vcf $MART_EXPORT $POP_CHB $POP_PEL
+	echo "[DEBUG] Calculating Fst for $stem.vcf"
+	while read linea
+	do
+		echo "[DEBUG] working in line: $linea"
+		inicio=$(echo "$linea" | cut -f3)
+		final=$(echo "$linea" | cut -f4)
+		cromosoma=$(echo "$linea" | cut -f1)
+		segmento=$(echo "$linea" | cut -f5)
+		vcftools --vcf $stem.vcf \
+			 --weir-fst-pop $POP_CHB \
+			 --weir-fst-pop $POP_PEL \
+			 --out $segmento.log --chr $cromosoma \
+			 --from-bp $inicio --to-bp $final
+	done < $MART_EXPORT

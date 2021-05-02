@@ -1,0 +1,26 @@
+#This module uses vcftools to calculate Fst from a .vcf file
+for each gene provided by a biomart file
+
+# Inputs
+This module takes a file with .vcf extension with the coordinates of the genes
+provided by mart_export.txt ,a biomart file with gene coordinates and
+two files with IDs for specific populations (the ones the user want to use
+for Fst calculation)
+
+#Example:
+
+out.recode.vcf
+mart_export.txt
+pop.chb
+pop.pel
+
+# Output
+A .log and .log.weir.fst files for each gene
+
+# Dependencies
+
+ vcftools:
+ Version 0.1.15 (or more actualizated versions)
+
+# Authors
+María Fernanda Mirón Toruño
